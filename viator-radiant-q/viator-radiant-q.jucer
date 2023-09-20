@@ -4,6 +4,63 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="nfIQqr" name="viator-radiant-q">
     <GROUP id="{E1C0ADC2-97E6-F6D5-6AF6-396CDE7213AD}" name="Source">
+      <GROUP id="{7B7FC15D-C1D5-18EE-2C8D-9AB43945DCC6}" name="globals">
+        <FILE id="qXrAvl" name="Globals.cpp" compile="1" resource="0" file="Source/globals/Globals.cpp"/>
+        <FILE id="QlOOSL" name="Globals.h" compile="0" resource="0" file="Source/globals/Globals.h"/>
+        <FILE id="QvCQJ2" name="Parameters.cpp" compile="1" resource="0" file="Source/globals/Parameters.cpp"/>
+        <FILE id="Jn0HvP" name="Parameters.h" compile="0" resource="0" file="Source/globals/Parameters.h"/>
+      </GROUP>
+      <GROUP id="{40DC9574-A1A2-A044-F674-0837CD91584A}" name="Assets">
+        <GROUP id="{1DEC7CAA-B268-CF3A-E1B2-213EC2435790}" name="decor">
+          <FILE id="HuwyPh" name="decor_grid.png" compile="0" resource="1" file="Source/Assets/decor/decor_grid.png"/>
+          <FILE id="D3hRsn" name="screw.png" compile="0" resource="1" file="Source/Assets/decor/screw.png"/>
+        </GROUP>
+        <GROUP id="{F78F8C3E-AFD5-D2A8-8A42-63DAD76B578B}" name="faders">
+          <FILE id="E327AI" name="Ver_flat_slider.png" compile="0" resource="1"
+                file="Source/Assets/faders/Ver_flat_slider.png"/>
+          <FILE id="I4HVOf" name="Ver_slider.png" compile="0" resource="1" file="Source/Assets/faders/Ver_slider.png"/>
+        </GROUP>
+        <GROUP id="{EC100834-38AE-16D6-6F48-F8CDE3A6FAD7}" name="knobs">
+          <FILE id="gfuVir" name="Knob_01.png" compile="0" resource="1" file="Source/Assets/knobs/Knob_01.png"/>
+          <FILE id="cbSILZ" name="Knob_02.png" compile="0" resource="1" file="Source/Assets/knobs/Knob_02.png"/>
+          <FILE id="U6jGZt" name="Knob_03.png" compile="0" resource="1" file="Source/Assets/knobs/Knob_03.png"/>
+          <FILE id="haBv1m" name="Knob_04.png" compile="0" resource="1" file="Source/Assets/knobs/Knob_04.png"/>
+          <FILE id="AOG5zP" name="Knob_05.png" compile="0" resource="1" file="Source/Assets/knobs/Knob_05.png"/>
+          <FILE id="HBxe6r" name="Knob_06.png" compile="0" resource="1" file="Source/Assets/knobs/Knob_06.png"/>
+          <FILE id="uxSiTM" name="Knob_07.png" compile="0" resource="1" file="Source/Assets/knobs/Knob_07.png"/>
+          <FILE id="UMGxmt" name="Knob_08.png" compile="0" resource="1" file="Source/Assets/knobs/Knob_08.png"/>
+          <FILE id="lUwF7j" name="Knob_09.png" compile="0" resource="1" file="Source/Assets/knobs/Knob_09.png"/>
+          <FILE id="WxOYje" name="Knob_10.png" compile="0" resource="1" file="Source/Assets/knobs/Knob_10.png"/>
+        </GROUP>
+        <GROUP id="{7CF8189C-F369-2F15-1EA0-EB9DA91F2502}" name="vu-meter">
+          <FILE id="CyDLpj" name="back_vu-meter_decore5.png" compile="0" resource="1"
+                file="Source/Assets/vu-meter/back_vu-meter_decore5.png"/>
+          <FILE id="Z1e1MG" name="scale_vu-meter.png" compile="0" resource="1"
+                file="Source/Assets/vu-meter/scale_vu-meter.png"/>
+          <FILE id="Sw3riO" name="scale_vu-meterno_name.png" compile="0" resource="1"
+                file="Source/Assets/vu-meter/scale_vu-meterno_name.png"/>
+          <FILE id="cpxWUy" name="vu_meter.png" compile="0" resource="1" file="Source/Assets/vu-meter/vu_meter.png"/>
+        </GROUP>
+        <FILE id="n8tMQz" name="back.png" compile="0" resource="1" file="Source/Assets/back.png"/>
+        <FILE id="aMNnOF" name="back_d.png" compile="0" resource="1" file="Source/Assets/back_d.png"/>
+        <FILE id="KvIrtB" name="but_small_rec_off.png" compile="0" resource="1"
+              file="Source/Assets/but_small_rec_off.png"/>
+        <FILE id="Xl9bYM" name="but_small_rec_on.png" compile="0" resource="1"
+              file="Source/Assets/but_small_rec_on.png"/>
+        <FILE id="byryCh" name="hor_flat_slider.png" compile="0" resource="1"
+              file="Source/Assets/hor_flat_slider.png"/>
+        <FILE id="O04cFs" name="Knob_mid.png" compile="0" resource="1" file="Source/Assets/Knob_mid.png"/>
+        <FILE id="usF7xt" name="Knob_small.png" compile="0" resource="1" file="Source/Assets/Knob_small.png"/>
+        <FILE id="kSgFEH" name="landon.png" compile="0" resource="1" file="Source/Assets/landon.png"/>
+        <FILE id="EctgXK" name="LED_meter.png" compile="0" resource="1" file="Source/Assets/LED_meter.png"/>
+        <FILE id="HCkUUX" name="screen.png" compile="0" resource="1" file="Source/Assets/screen.png"/>
+      </GROUP>
+      <GROUP id="{3AAB9475-DC76-9FD5-F314-1FE904819F54}" name="components">
+        <FILE id="qoUORm" name="Header.cpp" compile="1" resource="0" file="Source/components/Header.cpp"/>
+        <FILE id="HsgK76" name="Header.h" compile="0" resource="0" file="Source/components/Header.h"/>
+        <FILE id="ohtAeb" name="PultecComp.cpp" compile="1" resource="0" file="Source/components/PultecComp.cpp"/>
+        <FILE id="WrGVAd" name="PultecComp.h" compile="0" resource="0" file="Source/components/PultecComp.h"/>
+      </GROUP>
       <FILE id="dBlDrv" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="XZJyUS" name="PluginProcessor.h" compile="0" resource="0"

@@ -2,6 +2,27 @@
 
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="viator-radiant-q\Source\globals">
+      <UniqueIdentifier>{8A3CEE63-3798-26F1-08D6-687BAE619286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="viator-radiant-q\Source\Assets\decor">
+      <UniqueIdentifier>{351F53DC-76A8-4F5D-03D9-83DD7D3913E9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="viator-radiant-q\Source\Assets\faders">
+      <UniqueIdentifier>{28E9A61E-3C50-B4D8-AC06-4330EB86108E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="viator-radiant-q\Source\Assets\knobs">
+      <UniqueIdentifier>{DE5E641C-B688-60FD-5D5D-A0F205268F0A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="viator-radiant-q\Source\Assets\vu-meter">
+      <UniqueIdentifier>{49B62792-D29D-E145-3A89-C47ABDDEDC7F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="viator-radiant-q\Source\Assets">
+      <UniqueIdentifier>{65FDCCDE-C324-AB14-D222-EE0B1662373A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="viator-radiant-q\Source\components">
+      <UniqueIdentifier>{87FA928D-004E-B167-D8A5-7116B0DD4285}</UniqueIdentifier>
+    </Filter>
     <Filter Include="viator-radiant-q\Source">
       <UniqueIdentifier>{AEE479F3-9126-EF0B-8732-ACBFC9875CDA}</UniqueIdentifier>
     </Filter>
@@ -652,6 +673,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\globals\Globals.cpp">
+      <Filter>viator-radiant-q\Source\globals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\globals\Parameters.cpp">
+      <Filter>viator-radiant-q\Source\globals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\components\Header.cpp">
+      <Filter>viator-radiant-q\Source\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\components\PultecComp.cpp">
+      <Filter>viator-radiant-q\Source\components</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>viator-radiant-q\Source</Filter>
     </ClCompile>
@@ -3238,6 +3271,39 @@
     <ClCompile Include="..\..\..\modules\viatordsp\viator_modules\viator_modules.cpp">
       <Filter>JUCE Modules\viator_modules</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData2.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData3.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData4.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData5.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData6.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData7.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData8.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData9.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData10.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData11.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -3288,6 +3354,18 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\globals\Globals.h">
+      <Filter>viator-radiant-q\Source\globals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\globals\Parameters.h">
+      <Filter>viator-radiant-q\Source\globals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\components\Header.h">
+      <Filter>viator-radiant-q\Source\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\components\PultecComp.h">
+      <Filter>viator-radiant-q\Source\components</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>viator-radiant-q\Source</Filter>
     </ClInclude>
@@ -6372,6 +6450,9 @@
     <ClInclude Include="..\..\..\modules\viatordsp\viator_modules\viator_modules.h">
       <Filter>JUCE Modules\viator_modules</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
+      <Filter>JUCE Library Code</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
@@ -6380,6 +6461,90 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Source\Assets\decor\decor_grid.png">
+      <Filter>viator-radiant-q\Source\Assets\decor</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\decor\screw.png">
+      <Filter>viator-radiant-q\Source\Assets\decor</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\faders\Ver_flat_slider.png">
+      <Filter>viator-radiant-q\Source\Assets\faders</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\faders\Ver_slider.png">
+      <Filter>viator-radiant-q\Source\Assets\faders</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\knobs\Knob_01.png">
+      <Filter>viator-radiant-q\Source\Assets\knobs</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\knobs\Knob_02.png">
+      <Filter>viator-radiant-q\Source\Assets\knobs</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\knobs\Knob_03.png">
+      <Filter>viator-radiant-q\Source\Assets\knobs</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\knobs\Knob_04.png">
+      <Filter>viator-radiant-q\Source\Assets\knobs</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\knobs\Knob_05.png">
+      <Filter>viator-radiant-q\Source\Assets\knobs</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\knobs\Knob_06.png">
+      <Filter>viator-radiant-q\Source\Assets\knobs</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\knobs\Knob_07.png">
+      <Filter>viator-radiant-q\Source\Assets\knobs</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\knobs\Knob_08.png">
+      <Filter>viator-radiant-q\Source\Assets\knobs</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\knobs\Knob_09.png">
+      <Filter>viator-radiant-q\Source\Assets\knobs</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\knobs\Knob_10.png">
+      <Filter>viator-radiant-q\Source\Assets\knobs</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\vu-meter\back_vu-meter_decore5.png">
+      <Filter>viator-radiant-q\Source\Assets\vu-meter</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\vu-meter\scale_vu-meter.png">
+      <Filter>viator-radiant-q\Source\Assets\vu-meter</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\vu-meter\scale_vu-meterno_name.png">
+      <Filter>viator-radiant-q\Source\Assets\vu-meter</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\vu-meter\vu_meter.png">
+      <Filter>viator-radiant-q\Source\Assets\vu-meter</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\back.png">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\back_d.png">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\but_small_rec_off.png">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\but_small_rec_on.png">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\hor_flat_slider.png">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\Knob_mid.png">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\Knob_small.png">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\landon.png">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\LED_meter.png">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\screen.png">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
     <None Include="..\..\..\modules\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt">
       <Filter>JUCE Modules\juce_audio_devices\native\oboe</Filter>
     </None>

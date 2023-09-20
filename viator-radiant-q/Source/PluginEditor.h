@@ -1,19 +1,9 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
 #pragma once
-
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "components/Header.h"
+#include "components/PultecComp.h"
 
-//==============================================================================
-/**
-*/
 class ViatorradiantqAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
@@ -29,5 +19,7 @@ private:
     // access the processor object that created it.
     ViatorradiantqAudioProcessor& audioProcessor;
 
+    Header _headerComp;
+    PultecComp _pultecComp;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ViatorradiantqAudioProcessorEditor)
 };
