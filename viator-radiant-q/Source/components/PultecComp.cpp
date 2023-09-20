@@ -1,9 +1,9 @@
 #include <JuceHeader.h>
 #include "PultecComp.h"
 
-PultecComp::PultecComp()
+PultecComp::PultecComp(ViatorradiantqAudioProcessor& p) : audioProcessor(p)
 {
-
+    setDialProps();
 }
 
 PultecComp::~PultecComp()
@@ -18,7 +18,26 @@ void PultecComp::paint (juce::Graphics& g)
 
 void PultecComp::resized()
 {
+    positionDials();
+}
 
+void PultecComp::setDialProps()
+{
+    auto params = audioProcessor._parameterMap;
+    auto mainDialImage = juce::ImageCache::getFromMemory(BinaryData::Knob_04_png, BinaryData::Knob_04_pngSize);
+    auto auxDialImage = juce::ImageCache::getFromMemory(BinaryData::Knob_01_png, BinaryData::Knob_01_pngSize);
+    
+    for (int i = 0; i < params.getSliderParams().size(); ++i)
+    {
+        auto isAuxDial = i == 4 || i == 5 || i == 7;
+        
+        _dials.add(std::make_unique<viator_gui::ImageFader>());
+        _dials[i]->setComponentID(params.getSliderParams()[i].paramID);
+        _dials[i]->setName(params.getSliderParams()[i].paramName);
+        _dials[i]->setFaderImageAndNumFrames(isAuxDial ? auxDialImage : mainDialImage, 128);
+        _dials[i]->setSliderStyle(juce::Slider::RotaryVerticalDrag);
+        addAndMakeVisible(*_dials[i]);
+    }
 }
 
 void PultecComp::paintBackground(juce::Graphics &g)
@@ -49,4 +68,29 @@ void PultecComp::paintScrews(juce::Graphics &g)
     g.drawImageWithin(screw, screwX, screwY, screwSize, screwSize, juce::RectanglePlacement::stretchToFit);
     screwY *= 3;
     g.drawImageWithin(screw, screwX, screwY, screwSize, screwSize, juce::RectanglePlacement::stretchToFit);
+}
+
+void PultecComp::positionDials()
+{
+    auto compX = getWidth() * 0.12;
+    auto compY = getHeight() * 0.1;
+    const auto compSize = getWidth() * 0.1;
+    const auto padding = getWidth() * 0.025;
+    _dials[0]->setBounds(compX, compY, compSize, compSize);
+    compX += compSize + padding;
+    _dials[1]->setBounds(compX, compY, compSize, compSize);
+    compX += compSize + padding * 4.0;
+    _dials[2]->setBounds(compX, compY, compSize, compSize);
+    compX += compSize + padding;
+    _dials[3]->setBounds(compX, compY, compSize, compSize);
+    compX += compSize + padding * 4.0;
+    _dials[4]->setBounds(compX, compY, compSize, compSize);
+    
+    compY += compSize * 1.6;
+    compX = getWidth() * 0.184;
+    _dials[5]->setBounds(compX, compY, compSize, compSize);
+    compX = _dials[1]->getRight();
+    _dials[6]->setBounds(compX, compY, compSize, compSize);
+    compX = getWidth() * 0.508;
+    _dials[7]->setBounds(compX, compY, compSize, compSize);
 }
