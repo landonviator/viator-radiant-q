@@ -4,57 +4,31 @@
 namespace ViatorParameters
 {
 
-// output
+extern const juce::String lowBoostID;
+extern const juce::String lowBoostName;
+
+extern const juce::String lowAttenID;
+extern const juce::String lowAttenName;
+
+extern const juce::String highBoostID;
+extern const juce::String highBoostName;
+
+extern const juce::String highAttenID;
+extern const juce::String highAttenName;
+
+extern const juce::String highAttenRangeID;
+extern const juce::String highAttenRangeName;
+
+extern const juce::String lowFreqID;
+extern const juce::String lowFreqName;
+
+extern const juce::String bandwidthID;
+extern const juce::String bandwidthFreqName;
+
+extern const juce::String highFreqID;
+extern const juce::String highFreqName;
+
 extern const juce::String volumeID;
 extern const juce::String volumeName;
 
-// filters
-extern const juce::String filter1GainID;
-extern const juce::String filter1GainName;
-
-extern const juce::String filter1QID;
-extern const juce::String filter1QName;
-
-extern const juce::String filter1CutoffID;
-extern const juce::String filter1CutoffName;
-
-extern const juce::String filter2GainID;
-extern const juce::String filter2GainName;
-
-extern const juce::String filter2QID;
-extern const juce::String filter2QName;
-
-extern const juce::String filter2CutoffID;
-extern const juce::String filter2CutoffName;
-
-extern const juce::String filter3GainID;
-extern const juce::String filter3GainName;
-
-extern const juce::String filter3QID;
-extern const juce::String filter3QName;
-
-extern const juce::String filter3CutoffID;
-extern const juce::String filter3CutoffName;
-
-extern const juce::String filter4GainID;
-extern const juce::String filter4GainName;
-
-extern const juce::String filter4QID;
-extern const juce::String filter4QName;
-
-extern const juce::String filter4CutoffID;
-extern const juce::String filter4CutoffName;
-
-extern const juce::String hpCutoffID;
-extern const juce::String hpCutoffName;
-
-extern const juce::String lpCutoffID;
-extern const juce::String lpCutoffName;
-
-// buttons
-extern const juce::String lowShelfToggleID;
-extern const juce::String lowShelfToggleName;
-
-extern const juce::String highShelfToggleID;
-extern const juce::String highShelfToggleName;
 }

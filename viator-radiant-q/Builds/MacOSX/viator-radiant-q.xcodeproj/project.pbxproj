@@ -49,6 +49,7 @@
 		56D75583ED6F01438C0856E8 /* Foundation.framework */ = {isa = PBXBuildFile; fileRef = 6ADB0AB1710F95F8C0CA8B85; };
 		56F932DAAD4939EC868E6042 /* include_juce_data_structures.mm */ = {isa = PBXBuildFile; fileRef = 8332040B698B64170411F2FA; };
 		5714AE2349343F009BAF2534 /* BinaryData9.cpp */ = {isa = PBXBuildFile; fileRef = FC0AB565A219BE33A7202FB6; };
+		5F26A549A1EDADAE14371A46 /* BinaryData12.cpp */ = {isa = PBXBuildFile; fileRef = FD28EE1F5A8802C82233C290; };
 		606FBAB02A9C557B01E714B6 /* Shared Code */ = {isa = PBXBuildFile; fileRef = A9F0FD7DB599D0E56CE1D578; };
 		6164D92C61C56B766CABE337 /* include_juce_audio_processors_lv2_libs.cpp */ = {isa = PBXBuildFile; fileRef = 5514EFC7A3006C0BFD6A9EEC; };
 		633D56BAE37D106B91A95894 /* include_juce_graphics.mm */ = {isa = PBXBuildFile; fileRef = 5BF5A8991EE8DC96F828D804; };
@@ -96,6 +97,7 @@
 		14862C6AF01868F0E7C9AC8F /* Ver_slider.png */ /* Ver_slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Ver_slider.png; path = ../../Source/Assets/faders/Ver_slider.png; sourceTree = SOURCE_ROOT; };
 		192709E3E304388034B15B8E /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = ../../../modules/JUCE/modules/juce_data_structures; sourceTree = SOURCE_ROOT; };
 		1A7EC84AD20D6260DE5C288C /* include_juce_audio_formats.mm */ /* include_juce_audio_formats.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_formats.mm; path = ../../JuceLibraryCode/include_juce_audio_formats.mm; sourceTree = SOURCE_ROOT; };
+		1C391ED9A4BBCE2F895A022C /* texture.jpg */ /* texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = texture.jpg; path = ../../Source/Assets/texture.jpg; sourceTree = SOURCE_ROOT; };
 		2254359D974F8C417CA66FC6 /* BinaryData8.cpp */ /* BinaryData8.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData8.cpp; path = ../../JuceLibraryCode/BinaryData8.cpp; sourceTree = SOURCE_ROOT; };
 		24F63A24BB24F5DDCB10E523 /* juce_audio_basics */ /* juce_audio_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_basics; path = ../../../modules/JUCE/modules/juce_audio_basics; sourceTree = SOURCE_ROOT; };
 		27C39F910BC52BFD4783F78D /* BinaryData11.cpp */ /* BinaryData11.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData11.cpp; path = ../../JuceLibraryCode/BinaryData11.cpp; sourceTree = SOURCE_ROOT; };
@@ -171,6 +173,7 @@
 		CA59132525377FA6701C22E8 /* Knob_07.png */ /* Knob_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Knob_07.png; path = ../../Source/Assets/knobs/Knob_07.png; sourceTree = SOURCE_ROOT; };
 		CBFABB74DD87F793414F42B4 /* Knob_03.png */ /* Knob_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Knob_03.png; path = ../../Source/Assets/knobs/Knob_03.png; sourceTree = SOURCE_ROOT; };
 		CC32411076BB928004EC5AAF /* BinaryData10.cpp */ /* BinaryData10.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData10.cpp; path = ../../JuceLibraryCode/BinaryData10.cpp; sourceTree = SOURCE_ROOT; };
+		CED7DED04179D8313F4044BC /* light-gray-concrete-wall.jpg */ /* light-gray-concrete-wall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "light-gray-concrete-wall.jpg"; path = "../../Source/Assets/light-gray-concrete-wall.jpg"; sourceTree = SOURCE_ROOT; };
 		CF59E821FF2960DD6690A66E /* Knob_05.png */ /* Knob_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Knob_05.png; path = ../../Source/Assets/knobs/Knob_05.png; sourceTree = SOURCE_ROOT; };
 		D0104DCED20F04760614341C /* screen.png */ /* screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = screen.png; path = ../../Source/Assets/screen.png; sourceTree = SOURCE_ROOT; };
 		D2827D8696783352FDBB0B47 /* IOKit.framework */ /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -195,6 +198,7 @@
 		F180A02EA14DEDEDC6E350CD /* PultecComp.h */ /* PultecComp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PultecComp.h; path = ../../Source/components/PultecComp.h; sourceTree = SOURCE_ROOT; };
 		FA183F3A2077CF25795A3CA5 /* Knob_08.png */ /* Knob_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Knob_08.png; path = ../../Source/Assets/knobs/Knob_08.png; sourceTree = SOURCE_ROOT; };
 		FC0AB565A219BE33A7202FB6 /* BinaryData9.cpp */ /* BinaryData9.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData9.cpp; path = ../../JuceLibraryCode/BinaryData9.cpp; sourceTree = SOURCE_ROOT; };
+		FD28EE1F5A8802C82233C290 /* BinaryData12.cpp */ /* BinaryData12.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData12.cpp; path = ../../JuceLibraryCode/BinaryData12.cpp; sourceTree = SOURCE_ROOT; };
 		FD856B537DAE9D362AFAA535 /* include_juce_audio_devices.mm */ /* include_juce_audio_devices.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_devices.mm; path = ../../JuceLibraryCode/include_juce_audio_devices.mm; sourceTree = SOURCE_ROOT; };
 		FDF407C5669606A561B7DE38 /* Info-VST3_Manifest_Helper.plist */ /* Info-VST3_Manifest_Helper.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-VST3_Manifest_Helper.plist"; path = "Info-VST3_Manifest_Helper.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -284,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				952E4DEBB78E2912B1B906B0,
+				1C391ED9A4BBCE2F895A022C,
 			);
 			name = "viator-radiant-q";
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				84C1CFAB4CA0AB5A515210A8,
 				EC298B771375D373E64B1C15,
 				E66533C1DACF760F35EB60C3,
+				CED7DED04179D8313F4044BC,
 				D0104DCED20F04760614341C,
 			);
 			name = Assets;
@@ -346,6 +352,7 @@
 				FC0AB565A219BE33A7202FB6,
 				CC32411076BB928004EC5AAF,
 				27C39F910BC52BFD4783F78D,
+				FD28EE1F5A8802C82233C290,
 				B8D7FD358CCBF103137A82B9,
 				FD856B537DAE9D362AFAA535,
 				1A7EC84AD20D6260DE5C288C,
@@ -860,6 +867,7 @@
 				5714AE2349343F009BAF2534,
 				0403BC6C3174DDA7E2262F05,
 				6AAB5E4664E9EBEC99D79BB0,
+				5F26A549A1EDADAE14371A46,
 				9A6FDBC61FF4E2736E80E736,
 				3F10060C90CDE906C260A278,
 				303C59CF86DA1A58A703C7B2,

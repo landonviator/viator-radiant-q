@@ -2595,6 +2595,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\BinaryData9.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\BinaryData10.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\BinaryData11.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData12.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_devices.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_formats.cpp"/>
@@ -3681,7 +3682,9 @@
     <None Include="..\..\Source\Assets\Knob_small.png"/>
     <None Include="..\..\Source\Assets\landon.png"/>
     <None Include="..\..\Source\Assets\LED_meter.png"/>
+    <None Include="..\..\Source\Assets\light-gray-concrete-wall.jpg"/>
     <None Include="..\..\Source\Assets\screen.png"/>
+    <None Include="..\..\Source\Assets\texture.jpg"/>
     <None Include="..\..\..\modules\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt"/>
     <None Include="..\..\..\modules\JUCE\modules\juce_audio_devices\native\oboe\README.md"/>
     <None Include="..\..\..\modules\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>

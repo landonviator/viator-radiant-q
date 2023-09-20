@@ -53,6 +53,8 @@
         <FILE id="usF7xt" name="Knob_small.png" compile="0" resource="1" file="Source/Assets/Knob_small.png"/>
         <FILE id="kSgFEH" name="landon.png" compile="0" resource="1" file="Source/Assets/landon.png"/>
         <FILE id="EctgXK" name="LED_meter.png" compile="0" resource="1" file="Source/Assets/LED_meter.png"/>
+        <FILE id="mcW7L9" name="light-gray-concrete-wall.jpg" compile="0" resource="1"
+              file="Source/Assets/light-gray-concrete-wall.jpg"/>
         <FILE id="HCkUUX" name="screen.png" compile="0" resource="1" file="Source/Assets/screen.png"/>
       </GROUP>
       <GROUP id="{3AAB9475-DC76-9FD5-F314-1FE904819F54}" name="components">
@@ -69,6 +71,7 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="dTFb57" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
+    <FILE id="r3t8M0" name="texture.jpg" compile="0" resource="1" file="Source/Assets/texture.jpg"/>
   </MAINGROUP>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
