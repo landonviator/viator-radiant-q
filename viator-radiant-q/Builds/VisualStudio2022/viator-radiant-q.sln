@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio Version 17
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "viator-radiant-q - Standalone Plugin", "viator-radiant-q_StandalonePlugin.vcxproj", "{9B13ED93-35D0-6243-0F7E-B9B43880A8AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{69857DF7-716A-67D0-7782-847ED45FE4B8} = {69857DF7-716A-67D0-7782-847ED45FE4B8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "viator-radiant-q - VST3", "viator-radiant-q_VST3.vcxproj", "{4BB36EA3-BEA0-4E26-2799-C5F8D1C7FB75}"
+	ProjectSection(ProjectDependencies) = postProject
+		{69857DF7-716A-67D0-7782-847ED45FE4B8} = {69857DF7-716A-67D0-7782-847ED45FE4B8}
+		{ED975163-11ED-2E36-2044-BC5766556506} = {ED975163-11ED-2E36-2044-BC5766556506}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "viator-radiant-q - Shared Code", "viator-radiant-q_SharedCode.vcxproj", "{69857DF7-716A-67D0-7782-847ED45FE4B8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "viator-radiant-q - VST3 Manifest Helper", "viator-radiant-q_VST3ManifestHelper.vcxproj", "{ED975163-11ED-2E36-2044-BC5766556506}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BB36EA3-BEA0-4E26-2799-C5F8D1C7FB75}.Debug|x64.ActiveCfg = Debug|x64
+		{4BB36EA3-BEA0-4E26-2799-C5F8D1C7FB75}.Debug|x64.Build.0 = Debug|x64
+		{4BB36EA3-BEA0-4E26-2799-C5F8D1C7FB75}.Release|x64.ActiveCfg = Release|x64
+		{4BB36EA3-BEA0-4E26-2799-C5F8D1C7FB75}.Release|x64.Build.0 = Release|x64
+		{9B13ED93-35D0-6243-0F7E-B9B43880A8AD}.Debug|x64.ActiveCfg = Debug|x64
+		{9B13ED93-35D0-6243-0F7E-B9B43880A8AD}.Debug|x64.Build.0 = Debug|x64
+		{9B13ED93-35D0-6243-0F7E-B9B43880A8AD}.Release|x64.ActiveCfg = Release|x64
+		{9B13ED93-35D0-6243-0F7E-B9B43880A8AD}.Release|x64.Build.0 = Release|x64
+		{69857DF7-716A-67D0-7782-847ED45FE4B8}.Debug|x64.ActiveCfg = Debug|x64
+		{69857DF7-716A-67D0-7782-847ED45FE4B8}.Debug|x64.Build.0 = Debug|x64
+		{69857DF7-716A-67D0-7782-847ED45FE4B8}.Release|x64.ActiveCfg = Release|x64
+		{69857DF7-716A-67D0-7782-847ED45FE4B8}.Release|x64.Build.0 = Release|x64
+		{ED975163-11ED-2E36-2044-BC5766556506}.Debug|x64.ActiveCfg = Debug|x64
+		{ED975163-11ED-2E36-2044-BC5766556506}.Debug|x64.Build.0 = Debug|x64
+		{ED975163-11ED-2E36-2044-BC5766556506}.Release|x64.ActiveCfg = Release|x64
+		{ED975163-11ED-2E36-2044-BC5766556506}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
