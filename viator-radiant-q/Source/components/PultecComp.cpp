@@ -44,7 +44,7 @@ void PultecComp::paintBackground(juce::Graphics &g)
 {
     const auto shape = viator_utils::Gradient::RectShape::kRounded;
     auto rect = getLocalBounds();
-    auto color = juce::Colour(35, 40, 51).darker(1.4);
+    auto color = juce::Colour(22, 33, 62).darker(0.2);
     auto contrast = 0.1;
     viator_utils::Gradient::addRadialGradient(g, color, rect, shape, contrast);
     

@@ -19,13 +19,47 @@ ViatorradiantqAudioProcessor::ViatorradiantqAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), _treeState(*this, nullptr, "PARAMETERS", createParameterLayout())
 #endif
 {
+    // sliders
+    for (int i = 0; i < _parameterMap.getSliderParams().size(); i++)
+    {
+        _treeState.addParameterListener(_parameterMap.getSliderParams()[i].paramID, this);
+    }
+    
+    // buttons
+    for (int i = 0; i < _parameterMap.getButtonParams().size(); i++)
+    {
+        _treeState.addParameterListener(_parameterMap.getButtonParams()[i].paramID, this);
+    }
+    
+    // menus
+    for (int i = 0; i < _parameterMap.getMenuParams().size(); i++)
+    {
+        _treeState.addParameterListener(_parameterMap.getMenuParams()[i].paramID, this);
+    }
 }
 
 ViatorradiantqAudioProcessor::~ViatorradiantqAudioProcessor()
 {
+    // sliders
+    for (int i = 0; i < _parameterMap.getSliderParams().size(); i++)
+    {
+        _treeState.removeParameterListener(_parameterMap.getSliderParams()[i].paramID, this);
+    }
+    
+    // buttons
+    for (int i = 0; i < _parameterMap.getButtonParams().size(); i++)
+    {
+        _treeState.removeParameterListener(_parameterMap.getButtonParams()[i].paramID, this);
+    }
+    
+    // menus
+    for (int i = 0; i < _parameterMap.getMenuParams().size(); i++)
+    {
+        _treeState.removeParameterListener(_parameterMap.getMenuParams()[i].paramID, this);
+    }
 }
 
 //==============================================================================
@@ -88,6 +122,58 @@ const juce::String ViatorradiantqAudioProcessor::getProgramName (int index)
 
 void ViatorradiantqAudioProcessor::changeProgramName (int index, const juce::String& newName)
 {
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout ViatorradiantqAudioProcessor::createParameterLayout()
+{
+    std::vector <std::unique_ptr<juce::RangedAudioParameter>> params;
+    
+    // sliders
+    for (int i = 0; i < _parameterMap.getSliderParams().size(); i++)
+    {
+        auto param = _parameterMap.getSliderParams()[i];
+        auto range = juce::NormalisableRange<float>(param.min, param.max);
+        
+        if (param.isSkew == ViatorParameters::SliderParameterData::SkewType::kSkew)
+        {
+            range.setSkewForCentre(param.center);
+        }
+
+        if (param.isInt == ViatorParameters::SliderParameterData::NumericType::kInt)
+        {
+            params.push_back (std::make_unique<juce::AudioProcessorValueTreeState::Parameter>(juce::ParameterID { param.paramID, _versionNumber }, param.paramName, param.paramName, range, param.initial, valueToTextFunction, textToValueFunction));
+        }
+        
+        else
+        {
+            params.push_back (std::make_unique<juce::AudioParameterFloat>(juce::ParameterID { param.paramID, _versionNumber }, param.paramName, range, param.initial));
+        }
+    }
+    
+    // buttons
+    for (int i = 0; i < _parameterMap.getButtonParams().size(); i++)
+    {
+        auto param = _parameterMap.getButtonParams()[i];
+        params.push_back (std::make_unique<juce::AudioParameterBool>(juce::ParameterID { param.paramID, _versionNumber }, param.paramName, _parameterMap.getButtonParams()[i].initial));
+    }
+    
+    // menus
+    for (int i = 0; i < _parameterMap.getMenuParams().size(); i++)
+    {
+        auto param = _parameterMap.getMenuParams()[i];
+        params.push_back (std::make_unique<juce::AudioParameterChoice>(juce::ParameterID { param.paramID, _versionNumber }, param.paramName, param.choices, param.defaultIndex));
+    }
+    
+    return { params.begin(), params.end() };
+}
+
+void ViatorradiantqAudioProcessor::parameterChanged(const juce::String &parameterID, float newValue)
+{
+}
+
+void ViatorradiantqAudioProcessor::updateParameters()
+{
+    
 }
 
 //==============================================================================

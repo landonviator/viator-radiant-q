@@ -2,10 +2,7 @@
 #include <JuceHeader.h>
 #include "globals/Parameters.h"
 
-class ViatorradiantqAudioProcessor  : public juce::AudioProcessor
-                            #if JucePlugin_Enable_ARA
-                             , public juce::AudioProcessorARAExtension
-                            #endif
+class ViatorradiantqAudioProcessor  : public juce::AudioProcessor, public juce::AudioProcessorValueTreeState::Listener
 {
 public:
     //==============================================================================
@@ -46,8 +43,33 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
     ViatorParameters::Params _parameterMap;
+    juce::AudioProcessorValueTreeState _treeState;
+    
+    juce::ValueTree variableTree
+    { "Variables", {},
+        {
+        { "Group", {{ "name", "Vars" }},
+            {
+                { "Parameter", {{ "id", "width" }, { "value", 0.0 }}},
+                { "Parameter", {{ "id", "height" }, { "value", 0.0 }}}
+            }
+        }
+        }
+    };
+    
+    float _width = 0.0f;
+    float _height = 0.0f;
     
 private:
+    
+    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    void parameterChanged (const juce::String& parameterID, float newValue) override;
+    using Parameter = juce::AudioProcessorValueTreeState::Parameter;
+    static juce::String valueToTextFunction(float x) { return juce::String(static_cast<int>(x)); }
+    static float textToValueFunction(const juce::String& str) { return str.getFloatValue(); }
+    void updateParameters();
+    
+    const int _versionNumber = 1;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ViatorradiantqAudioProcessor)
 };
