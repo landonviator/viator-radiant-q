@@ -62,6 +62,10 @@ public:
     
 private:
     
+    juce::dsp::ProcessSpec _spec;
+    juce::OwnedArray<viator_dsp::SVFilter<float>> _filters;
+    juce::dsp::Gain<float> _volumeModule;
+    
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     void parameterChanged (const juce::String& parameterID, float newValue) override;
     using Parameter = juce::AudioProcessorValueTreeState::Parameter;

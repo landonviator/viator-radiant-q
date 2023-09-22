@@ -20,6 +20,7 @@ private:
     void positionDials();
     
     juce::OwnedArray<viator_gui::ImageFader> _dials;
+    juce::OwnedArray<juce::AudioProcessorValueTreeState::SliderAttachment> _attachments;
     void setDialProps();
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PultecComp)

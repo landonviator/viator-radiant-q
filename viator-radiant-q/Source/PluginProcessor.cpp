@@ -1,24 +1,11 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
-
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-//==============================================================================
 ViatorradiantqAudioProcessor::ViatorradiantqAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
      : AudioProcessor (BusesProperties()
-                     #if ! JucePlugin_IsMidiEffect
-                      #if ! JucePlugin_IsSynth
                        .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
-                      #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
-                     #endif
                        ), _treeState(*this, nullptr, "PARAMETERS", createParameterLayout())
 #endif
 {
@@ -38,6 +25,11 @@ ViatorradiantqAudioProcessor::ViatorradiantqAudioProcessor()
     for (int i = 0; i < _parameterMap.getMenuParams().size(); i++)
     {
         _treeState.addParameterListener(_parameterMap.getMenuParams()[i].paramID, this);
+    }
+    
+    for (int i = 0; i < 4; i++)
+    {
+        _filters.add(std::make_unique<viator_dsp::SVFilter<float>>());
     }
 }
 
@@ -62,7 +54,6 @@ ViatorradiantqAudioProcessor::~ViatorradiantqAudioProcessor()
     }
 }
 
-//==============================================================================
 const juce::String ViatorradiantqAudioProcessor::getName() const
 {
     return JucePlugin_Name;
@@ -102,8 +93,7 @@ double ViatorradiantqAudioProcessor::getTailLengthSeconds() const
 
 int ViatorradiantqAudioProcessor::getNumPrograms()
 {
-    return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
-                // so this should be at least 1, even if you're not really implementing programs.
+    return 1;
 }
 
 int ViatorradiantqAudioProcessor::getCurrentProgram()
@@ -132,6 +122,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout ViatorradiantqAudioProcessor
     for (int i = 0; i < _parameterMap.getSliderParams().size(); i++)
     {
         auto param = _parameterMap.getSliderParams()[i];
+        
         auto range = juce::NormalisableRange<float>(param.min, param.max);
         
         if (param.isSkew == ViatorParameters::SliderParameterData::SkewType::kSkew)
@@ -173,14 +164,53 @@ void ViatorradiantqAudioProcessor::parameterChanged(const juce::String &paramete
 
 void ViatorradiantqAudioProcessor::updateParameters()
 {
+    const auto lowFreq = _treeState.getRawParameterValue(ViatorParameters::lowFreqID)->load();
+    const auto dipCutoff = _treeState.getRawParameterValue(ViatorParameters::lowFreqID)->load() * 3.0;
+    const auto lowAtten = _treeState.getRawParameterValue(ViatorParameters::lowAttenID)->load();
+    const auto lowAttenReversed = juce::jmap(lowAtten, 0.0f, -15.0f, -15.0f, 0.0f);
+    const auto lowAttenRange = juce::jmap(std::abs(lowAttenReversed), 0.0f, 10.0f, 0.0f, 2.0f);
+    const auto dipMovement = dipCutoff * (1.0 / (lowAttenRange + 1.0));
     
+    const auto lowBoost = _treeState.getRawParameterValue(ViatorParameters::lowBoostID)->load();
+    const auto highFreq = _treeState.getRawParameterValue(ViatorParameters::highFreqID)->load();
+    const auto highBoost = _treeState.getRawParameterValue(ViatorParameters::highBoostID)->load();
+    const auto highAtten = _treeState.getRawParameterValue(ViatorParameters::highAttenID)->load();
+    
+    _filters[0]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, lowFreq);
+    _filters[1]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, dipMovement);
+    _filters[2]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, highFreq);
+    _filters[3]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, highFreq);
+    
+    _filters[0]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kGain, lowBoost);
+    _filters[1]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kGain, lowAttenReversed * 0.4);
+    _filters[2]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kGain, highBoost);
+    _filters[3]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kGain, highAtten);
+    
+    const auto q = _treeState.getRawParameterValue(ViatorParameters::bandwidthID)->load();
+    const auto qScaled = juce::jmap(q, 0.0f, 10.0f, 0.01f, 0.95f);
+    
+    _filters[0]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kQ, qScaled);
+    _filters[2]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kQ, qScaled);
+    _filters[3]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kQ, qScaled);
 }
 
-//==============================================================================
 void ViatorradiantqAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+    _spec.sampleRate = sampleRate;
+    _spec.maximumBlockSize = samplesPerBlock;
+    _spec.numChannels = getTotalNumInputChannels();
+    
+    for (int i = 0; i < _filters.size(); i++)
+    {
+        _filters[i]->prepare(_spec);
+        _filters[i]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kQType, viator_dsp::SVFilter<float>::QType::kParametric);
+    }
+    
+    _filters[0]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kLowShelf);
+    _filters[1]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kBandShelf);
+    _filters[1]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kQ, 1.0);
+    _filters[2]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kHighShelf);
+    _filters[3]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kLowPass);
 }
 
 void ViatorradiantqAudioProcessor::releaseResources()
@@ -192,55 +222,19 @@ void ViatorradiantqAudioProcessor::releaseResources()
 #ifndef JucePlugin_PreferredChannelConfigurations
 bool ViatorradiantqAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
-  #if JucePlugin_IsMidiEffect
-    juce::ignoreUnused (layouts);
-    return true;
-  #else
-    // This is the place where you check if the layout is supported.
-    // In this template code we only support mono or stereo.
-    // Some plugin hosts, such as certain GarageBand versions, will only
-    // load plugins that support stereo bus layouts.
-    if (layouts.getMainOutputChannelSet() != juce::AudioChannelSet::mono()
-     && layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo())
-        return false;
-
-    // This checks if the input layout matches the output layout
-   #if ! JucePlugin_IsSynth
-    if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
-        return false;
-   #endif
-
-    return true;
-  #endif
+    return layouts.getMainOutputChannelSet() == juce::AudioChannelSet::mono()
+    || layouts.getMainOutputChannelSet() == juce::AudioChannelSet::stereo();
 }
 #endif
 
 void ViatorradiantqAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
-    juce::ScopedNoDenormals noDenormals;
-    auto totalNumInputChannels  = getTotalNumInputChannels();
-    auto totalNumOutputChannels = getTotalNumOutputChannels();
-
-    // In case we have more outputs than inputs, this code clears any output
-    // channels that didn't contain input data, (because these aren't
-    // guaranteed to be empty - they may contain garbage).
-    // This is here to avoid people getting screaming feedback
-    // when they first compile a plugin, but obviously you don't need to keep
-    // this code if your algorithm always overwrites all the output channels.
-    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-        buffer.clear (i, 0, buffer.getNumSamples());
-
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-    // Make sure to reset the state if your inner loop is processing
-    // the samples and the outer loop is handling the channels.
-    // Alternatively, you can process the samples with the channels
-    // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    juce::dsp::AudioBlock<float> block {buffer};
+    updateParameters();
+    
+    for (auto& filter : _filters)
     {
-        auto* channelData = buffer.getWritePointer (channel);
-
-        // ..do something to the data...
+        filter->process(juce::dsp::ProcessContextReplacing<float>(block));
     }
 }
 

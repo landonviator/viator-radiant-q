@@ -32,6 +32,7 @@ void PultecComp::setDialProps()
         auto isAuxDial = i == 4 || i == 5 || i == 7;
         
         _dials.add(std::make_unique<viator_gui::ImageFader>());
+        _attachments.add(std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor._treeState, params.getSliderParams()[i].paramID, *_dials[i]));
         _dials[i]->setComponentID(params.getSliderParams()[i].paramID);
         _dials[i]->setName(params.getSliderParams()[i].paramName);
         _dials[i]->setFaderImageAndNumFrames(isAuxDial ? auxDialImage : mainDialImage, 128);

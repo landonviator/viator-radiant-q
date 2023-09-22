@@ -28,6 +28,7 @@ struct SliderParameterData
         SkewType isSkew;
         float center;
         NumericType isInt;
+        bool isReverse;
 };
 
 struct ButtonParameterData
