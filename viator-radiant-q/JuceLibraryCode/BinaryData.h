@@ -92,6 +92,9 @@ namespace BinaryData
     extern const char*   lightgrayconcretewall_jpg;
     const int            lightgrayconcretewall_jpgSize = 7421704;
 
+    extern const char*   scale_small_knob_b_png;
+    const int            scale_small_knob_b_pngSize = 8016;
+
     extern const char*   screen_png;
     const int            screen_pngSize = 69252;
 
@@ -99,7 +102,7 @@ namespace BinaryData
     const int            texture_jpgSize = 5890458;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 30;
+    const int namedResourceListSize = 31;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

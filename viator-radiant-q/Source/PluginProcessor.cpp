@@ -179,7 +179,10 @@ void ViatorradiantqAudioProcessor::updateParameters()
     _filters[0]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, lowFreq);
     _filters[1]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, dipMovement);
     _filters[2]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, highFreq);
-    _filters[3]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, highFreq);
+    
+    const auto range = _treeState.getRawParameterValue(ViatorParameters::highAttenRangeID)->load();
+    const auto highCut = juce::jmap(highAtten, -15.0f, 0.0f, 19999.0f, range);
+    _filters[3]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, highCut);
     
     _filters[0]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kGain, lowBoost);
     _filters[1]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kGain, lowAttenReversed * 0.4);
@@ -187,7 +190,7 @@ void ViatorradiantqAudioProcessor::updateParameters()
     _filters[3]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kGain, highAtten);
     
     const auto q = _treeState.getRawParameterValue(ViatorParameters::bandwidthID)->load();
-    const auto qScaled = juce::jmap(q, 0.0f, 10.0f, 0.01f, 0.95f);
+    const auto qScaled = juce::jmap(q, 0.0f, 10.0f, 0.5f, 1.5f);
     
     _filters[0]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kQ, qScaled);
     _filters[2]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kQ, qScaled);
@@ -209,7 +212,7 @@ void ViatorradiantqAudioProcessor::prepareToPlay (double sampleRate, int samples
     _filters[0]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kLowShelf);
     _filters[1]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kBandShelf);
     _filters[1]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kQ, 1.0);
-    _filters[2]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kHighShelf);
+    _filters[2]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kBandShelf);
     _filters[3]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kLowPass);
 }
 
@@ -252,15 +255,22 @@ juce::AudioProcessorEditor* ViatorradiantqAudioProcessor::createEditor()
 //==============================================================================
 void ViatorradiantqAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
-    // You should use this method to store your parameters in the memory block.
-    // You could do that either as raw data, or use the XML or ValueTree classes
-    // as intermediaries to make it easy to save and load complex data.
+    _treeState.state.appendChild(variableTree, nullptr);
+    juce::MemoryOutputStream stream(destData, false);
+    _treeState.state.writeToStream (stream);
 }
 
 void ViatorradiantqAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
-    // You should use this method to restore your parameters from this memory block,
-    // whose contents will have been created by the getStateInformation() call.
+    auto tree = juce::ValueTree::readFromData (data, size_t(sizeInBytes));
+    variableTree = tree.getChildWithName("Variables");
+    
+    if (tree.isValid())
+    {
+        _treeState.state = tree;
+        _width = variableTree.getProperty("width");
+        _height = variableTree.getProperty("height");
+    }
 }
 
 //==============================================================================

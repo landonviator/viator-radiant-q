@@ -6,7 +6,7 @@ ViatorradiantqAudioProcessorEditor::ViatorradiantqAudioProcessorEditor (Viatorra
 {
     addAndMakeVisible(_headerComp);
     addAndMakeVisible(_pultecComp);
-    viator_utils::PluginWindow::setPluginWindowSize(0.0, 0.0, *this, 2.0, 1.0);
+    viator_utils::PluginWindow::setPluginWindowSize(audioProcessor._width, audioProcessor._height, *this, 2.0, 1.0);
 }
 
 ViatorradiantqAudioProcessorEditor::~ViatorradiantqAudioProcessorEditor()
@@ -34,4 +34,14 @@ void ViatorradiantqAudioProcessorEditor::resized()
     auto bgHeight = getHeight() * 0.76;
     auto bgY = getHeight() * 0.18;
     _pultecComp.setBounds(getLocalBounds().withSizeKeepingCentre(bgWidth, bgHeight).withY(bgY));
+    
+    savePluginBounds();
+}
+
+void ViatorradiantqAudioProcessorEditor::savePluginBounds()
+{
+    audioProcessor.variableTree.setProperty("width", getWidth(), nullptr);
+    audioProcessor.variableTree.setProperty("height", getHeight(), nullptr);
+    audioProcessor._width = getWidth();
+    audioProcessor._height = getHeight();
 }

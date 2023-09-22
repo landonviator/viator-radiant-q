@@ -55,6 +55,8 @@
         <FILE id="EctgXK" name="LED_meter.png" compile="0" resource="1" file="Source/Assets/LED_meter.png"/>
         <FILE id="mcW7L9" name="light-gray-concrete-wall.jpg" compile="0" resource="1"
               file="Source/Assets/light-gray-concrete-wall.jpg"/>
+        <FILE id="V6P6bi" name="scale_small_knob_b.png" compile="0" resource="1"
+              file="Source/Assets/scale_small_knob_b.png"/>
         <FILE id="HCkUUX" name="screen.png" compile="0" resource="1" file="Source/Assets/screen.png"/>
       </GROUP>
       <GROUP id="{3AAB9475-DC76-9FD5-F314-1FE904819F54}" name="components">

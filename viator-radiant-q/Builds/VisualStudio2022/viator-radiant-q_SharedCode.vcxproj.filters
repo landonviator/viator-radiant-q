@@ -6548,6 +6548,9 @@
     <None Include="..\..\Source\Assets\light-gray-concrete-wall.jpg">
       <Filter>viator-radiant-q\Source\Assets</Filter>
     </None>
+    <None Include="..\..\Source\Assets\scale_small_knob_b.png">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
     <None Include="..\..\Source\Assets\screen.png">
       <Filter>viator-radiant-q\Source\Assets</Filter>
     </None>

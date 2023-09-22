@@ -21,5 +21,8 @@ private:
 
     Header _headerComp;
     PultecComp _pultecComp;
+    
+    // Save plugin size in value tree
+    void savePluginBounds();
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ViatorradiantqAudioProcessorEditor)
 };

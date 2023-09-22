@@ -3683,6 +3683,7 @@
     <None Include="..\..\Source\Assets\landon.png"/>
     <None Include="..\..\Source\Assets\LED_meter.png"/>
     <None Include="..\..\Source\Assets\light-gray-concrete-wall.jpg"/>
+    <None Include="..\..\Source\Assets\scale_small_knob_b.png"/>
     <None Include="..\..\Source\Assets\screen.png"/>
     <None Include="..\..\Source\Assets\texture.jpg"/>
     <None Include="..\..\..\modules\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt"/>

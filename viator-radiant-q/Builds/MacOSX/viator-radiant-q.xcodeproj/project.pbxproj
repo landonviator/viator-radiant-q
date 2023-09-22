@@ -149,6 +149,7 @@
 		958E7BA135C9F90F7CC34B2C /* PluginEditor.h */ /* PluginEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PluginEditor.h; path = ../../Source/PluginEditor.h; sourceTree = SOURCE_ROOT; };
 		96AC62ECF3966C1177A3E143 /* Info-Standalone_Plugin.plist */ /* Info-Standalone_Plugin.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-Standalone_Plugin.plist"; path = "Info-Standalone_Plugin.plist"; sourceTree = SOURCE_ROOT; };
 		98BADF0803D40BA7B1C95224 /* scale_vu-meterno_name.png */ /* scale_vu-meterno_name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scale_vu-meterno_name.png"; path = "../../Source/Assets/vu-meter/scale_vu-meterno_name.png"; sourceTree = SOURCE_ROOT; };
+		9F3770016014252C811FB659 /* scale_small_knob_b.png */ /* scale_small_knob_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scale_small_knob_b.png; path = ../../Source/Assets/scale_small_knob_b.png; sourceTree = SOURCE_ROOT; };
 		A69E96AAA0BC5CDF2F38E385 /* juce_gui_extra */ /* juce_gui_extra */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_extra; path = ../../../modules/JUCE/modules/juce_gui_extra; sourceTree = SOURCE_ROOT; };
 		A9F0FD7DB599D0E56CE1D578 /* Shared Code */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libviator-radiant-q.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAEEA7347F646872D4B5CC63 /* include_juce_events.mm */ /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
@@ -332,6 +333,7 @@
 				EC298B771375D373E64B1C15,
 				E66533C1DACF760F35EB60C3,
 				CED7DED04179D8313F4044BC,
+				9F3770016014252C811FB659,
 				D0104DCED20F04760614341C,
 			);
 			name = Assets;
