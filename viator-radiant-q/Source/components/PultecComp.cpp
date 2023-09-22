@@ -4,6 +4,7 @@
 PultecComp::PultecComp(ViatorradiantqAudioProcessor& p) : audioProcessor(p)
 {
     setDialProps();
+    setLabelProps();
 }
 
 PultecComp::~PultecComp()
@@ -19,6 +20,7 @@ void PultecComp::paint (juce::Graphics& g)
 void PultecComp::resized()
 {
     positionDials();
+    positionLabels();
 }
 
 void PultecComp::setDialProps()
@@ -48,6 +50,20 @@ void PultecComp::setDialProps()
     }
 }
 
+void PultecComp::setLabelProps()
+{
+    for (int i = 0; i < 2; ++i)
+    {
+        _labels.add(std::make_unique<juce::Label>());
+        _labels[i]->setJustificationType(juce::Justification::centred);
+        _labels[i]->setColour(juce::Label::ColourIds::textColourId, juce::Colours::whitesmoke.withAlpha(0.5f));
+        addAndMakeVisible(*_labels[i]);
+    }
+    
+    _labels[0]->setText("Viator DSP", juce::dontSendNotification);
+    _labels[1]->setText("Electron Tube Powered \n Program Equalizer", juce::dontSendNotification);
+}
+
 void PultecComp::paintBackground(juce::Graphics &g)
 {
     const auto shape = viator_utils::Gradient::RectShape::kRounded;
@@ -56,7 +72,7 @@ void PultecComp::paintBackground(juce::Graphics &g)
     auto contrast = 0.1;
     viator_utils::Gradient::addRadialGradient(g, color, rect, shape, contrast);
     
-    g.setColour(juce::Colours::whitesmoke.withAlpha(0.15f));
+    g.setColour(juce::Colours::whitesmoke.withAlpha(0.1f));
     auto texture = juce::ImageCache::getFromMemory(BinaryData::lightgrayconcretewall_jpg, BinaryData::lightgrayconcretewall_jpgSize);
     g.drawImage(texture, getLocalBounds().toFloat());
     g.setColour(juce::Colours::whitesmoke);
@@ -102,4 +118,16 @@ void PultecComp::positionDials()
     _dials[6]->setBounds(compX, compY, compSize, compSize);
     compX = getWidth() * 0.556;
     _dials[7]->setBounds(compX, compY, compSize, compSize);
+}
+
+void PultecComp::positionLabels()
+{
+    const auto labelX = getWidth() * 0.7;
+    const auto labelY = getHeight() * 0.6;
+    const auto labelWidth = getWidth() * 0.2;
+    const auto labelHeight = getHeight() * 0.1;
+    _labels[0]->setBounds(labelX, labelY, labelWidth, labelHeight);
+    _labels[0]->setFont(juce::Font("Helvetica", _labels[0]->getHeight() * 0.8, juce::Font::FontStyleFlags::bold));
+    _labels[1]->setBounds(labelX, _labels[0]->getBottom(), labelWidth, labelHeight * 2.0);
+    _labels[1]->setFont(juce::Font("Helvetica", _labels[0]->getHeight() * 0.4, juce::Font::FontStyleFlags::plain));
 }
