@@ -167,7 +167,7 @@ void ViatorradiantqAudioProcessor::updateParameters()
     const auto lowFreq = _treeState.getRawParameterValue(ViatorParameters::lowFreqID)->load();
     const auto dipCutoff = _treeState.getRawParameterValue(ViatorParameters::lowFreqID)->load() * 3.0;
     const auto lowAtten = _treeState.getRawParameterValue(ViatorParameters::lowAttenID)->load();
-    const auto lowAttenReversed = juce::jmap(lowAtten, 0.0f, -15.0f, -15.0f, 0.0f);
+    const auto lowAttenReversed = juce::jmap(lowAtten, 0.0f, -10.0f, -10.0f, 0.0f);
     const auto lowAttenRange = juce::jmap(std::abs(lowAttenReversed), 0.0f, 10.0f, 0.0f, 2.0f);
     const auto dipMovement = dipCutoff * (1.0 / (lowAttenRange + 1.0));
     
@@ -176,12 +176,18 @@ void ViatorradiantqAudioProcessor::updateParameters()
     const auto highBoost = _treeState.getRawParameterValue(ViatorParameters::highBoostID)->load();
     const auto highAtten = _treeState.getRawParameterValue(ViatorParameters::highAttenID)->load();
     
+    const auto gain = _treeState.getRawParameterValue(ViatorParameters::gainID)->load();
+    const auto volume = _treeState.getRawParameterValue(ViatorParameters::volumeID)->load();
+    
+    _gainModule.setGainDecibels(gain);
+    _volumeModule.setGainDecibels(volume + 5.5);
+    
     _filters[0]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, lowFreq);
     _filters[1]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, dipMovement);
     _filters[2]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, highFreq);
     
     const auto range = _treeState.getRawParameterValue(ViatorParameters::highAttenRangeID)->load();
-    const auto highCut = juce::jmap(highAtten, -15.0f, 0.0f, 19999.0f, range);
+    const auto highCut = juce::jmap(highAtten, -10.0f, 0.0f, 22000.0f, range);
     _filters[3]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, highCut);
     
     _filters[0]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kGain, lowBoost);
@@ -214,6 +220,16 @@ void ViatorradiantqAudioProcessor::prepareToPlay (double sampleRate, int samples
     _filters[1]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kQ, 1.0);
     _filters[2]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kBandShelf);
     _filters[3]->setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kLowPass);
+    
+    _lowShelfCompensation.prepare(_spec);
+    _lowShelfCompensation.setParameter(viator_dsp::SVFilter<float>::ParameterId::kType, viator_dsp::SVFilter<float>::FilterType::kLowShelf);
+    _lowShelfCompensation.setParameter(viator_dsp::SVFilter<float>::ParameterId::kGain, -0.5);
+    _lowShelfCompensation.setParameter(viator_dsp::SVFilter<float>::ParameterId::kCutoff, 600.0);
+    
+    _gainModule.prepare(_spec);
+    _gainModule.setRampDurationSeconds(0.02);
+    _volumeModule.prepare(_spec);
+    _volumeModule.setRampDurationSeconds(0.02);
 }
 
 void ViatorradiantqAudioProcessor::releaseResources()
@@ -235,10 +251,25 @@ void ViatorradiantqAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
     juce::dsp::AudioBlock<float> block {buffer};
     updateParameters();
     
+    _gainModule.process(juce::dsp::ProcessContextReplacing<float>(block));
+    
+    for (int ch = 0; ch < block.getNumChannels(); ++ch)
+    {
+        float* data = block.getChannelPointer(ch);
+        
+        for (int sample = 0; sample < block.getNumSamples(); ++sample)
+        {
+            auto input = data[sample];
+            data[sample] = _piDivisor * std::atan(input);
+        }
+    }
+    
     for (auto& filter : _filters)
     {
         filter->process(juce::dsp::ProcessContextReplacing<float>(block));
     }
+    
+    _volumeModule.process(juce::dsp::ProcessContextReplacing<float>(block));
 }
 
 //==============================================================================

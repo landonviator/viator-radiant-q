@@ -14,6 +14,7 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+    Header& getViatorHeader(){return _headerComp;};
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
@@ -21,6 +22,17 @@ private:
 
     Header _headerComp;
     PultecComp _pultecComp;
+    
+    juce::OwnedArray<viator_gui::Fader> _sliders;
+    juce::OwnedArray<juce::AudioProcessorValueTreeState::SliderAttachment> _attachments;
+    void positionFaders();
+    void setFaderProps();
+    
+    juce::StringArray _tooltips =
+    {
+        "Increases the volume of the signal going into the EQ.",
+        "Increase the volume of the signal coming out of the EQ."
+    };
     
     // Save plugin size in value tree
     void savePluginBounds();

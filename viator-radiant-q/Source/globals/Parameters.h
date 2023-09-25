@@ -58,6 +58,9 @@ struct MenuParameterData
         std::vector<ViatorParameters::ButtonParameterData>& getButtonParams(){return _buttonParams;};
         std::vector<ViatorParameters::MenuParameterData>& getMenuParams(){return _menuParams;};
         
+        std::vector<ViatorParameters::SliderParameterData>& getPultecSliderParams(){return _pultecParams;};
+        std::vector<ViatorParameters::SliderParameterData>& getIOSliderParams(){return _ioParams;};
+        
     private:
         // Adds params to the vector
         void initSliderParams();
@@ -70,5 +73,8 @@ struct MenuParameterData
         std::vector<ViatorParameters::SliderParameterData> _sliderParams;
         std::vector<ViatorParameters::ButtonParameterData> _buttonParams;
         std::vector<ViatorParameters::MenuParameterData> _menuParams;
+        
+        std::vector<ViatorParameters::SliderParameterData> _pultecParams;
+        std::vector<ViatorParameters::SliderParameterData> _ioParams;
     };
 }

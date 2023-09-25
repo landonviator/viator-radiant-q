@@ -6,6 +6,7 @@ ViatorradiantqAudioProcessorEditor::ViatorradiantqAudioProcessorEditor (Viatorra
 {
     addAndMakeVisible(_headerComp);
     addAndMakeVisible(_pultecComp);
+    setFaderProps();
     viator_utils::PluginWindow::setPluginWindowSize(audioProcessor._width, audioProcessor._height, *this, 2.0, 1.0);
 }
 
@@ -35,6 +36,8 @@ void ViatorradiantqAudioProcessorEditor::resized()
     auto bgY = getHeight() * 0.18;
     _pultecComp.setBounds(getLocalBounds().withSizeKeepingCentre(bgWidth, bgHeight).withY(bgY));
     
+    positionFaders();
+    
     savePluginBounds();
 }
 
@@ -44,4 +47,34 @@ void ViatorradiantqAudioProcessorEditor::savePluginBounds()
     audioProcessor.variableTree.setProperty("height", getHeight(), nullptr);
     audioProcessor._width = getWidth();
     audioProcessor._height = getHeight();
+}
+
+void ViatorradiantqAudioProcessorEditor::setFaderProps()
+{
+    auto params = audioProcessor._parameterMap;
+    
+    for (int i = 0; i < params.getIOSliderParams().size(); ++i)
+    {
+        _sliders.add(std::make_unique<viator_gui::Fader>());
+        _attachments.add(std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor._treeState, params.getIOSliderParams()[i].paramID, *_sliders[i]));
+        _sliders[i]->setColour(juce::Slider::ColourIds::textBoxOutlineColourId, juce::Colours::transparentBlack);
+        _sliders[i]->setColour(juce::Slider::ColourIds::thumbColourId, juce::Colour(99, 99, 99));
+        _sliders[i]->setComponentID(params.getIOSliderParams()[i].paramID);
+        _sliders[i]->setName(params.getIOSliderParams()[i].paramName);
+        _sliders[i]->addMouseListener(this, true);
+        _sliders[i]->setDialValueType(viator_gui::CustomFader::ValueType::kFloat);
+        addAndMakeVisible(*_sliders[i]);
+    }
+}
+
+void ViatorradiantqAudioProcessorEditor::positionFaders()
+{
+    auto compX = 0.0;
+    auto compY = getHeight() * 0.25;
+    const auto compWidth = getWidth() * 0.05;
+    const auto compHeight = getHeight() * 0.6;
+    _sliders[0]->setBounds(compX, compY, compWidth, compHeight);
+    
+    compX = getWidth() * 0.95;
+    _sliders[1]->setBounds(compX, compY, compWidth, compHeight);
 }

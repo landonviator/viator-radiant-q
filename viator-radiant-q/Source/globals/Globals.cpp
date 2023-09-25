@@ -29,4 +29,7 @@ extern const juce::String highFreqName = "High Freq";
 
 extern const juce::String volumeID = "volumeID";
 extern const juce::String volumeName = "Output";
+
+extern const juce::String gainID = "gainID";
+extern const juce::String gainName = "Input";
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="N8FurO" name="viator-radiant-q" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" companyName="Viator DSP">
   <MAINGROUP id="nfIQqr" name="viator-radiant-q">
     <GROUP id="{E1C0ADC2-97E6-F6D5-6AF6-396CDE7213AD}" name="Source">
       <GROUP id="{7B7FC15D-C1D5-18EE-2C8D-9AB43945DCC6}" name="globals">

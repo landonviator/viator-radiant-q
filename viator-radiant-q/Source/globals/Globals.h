@@ -31,4 +31,7 @@ extern const juce::String highFreqName;
 extern const juce::String volumeID;
 extern const juce::String volumeName;
 
+extern const juce::String gainID;
+extern const juce::String gainName;
+
 }

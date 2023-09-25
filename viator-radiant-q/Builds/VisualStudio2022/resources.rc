@@ -15,6 +15,7 @@ BEGIN
   BEGIN
     BLOCK "040904E4"
     BEGIN
+      VALUE "CompanyName",  "Viator DSP\0"
       VALUE "FileDescription",  "viator-radiant-q\0"
       VALUE "FileVersion",  "1.0.0\0"
       VALUE "ProductName",  "viator-radiant-q\0"

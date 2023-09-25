@@ -3,7 +3,8 @@
 
 Header::Header()
 {
-    
+    _tooltipLabel.setJustificationType(juce::Justification::centred);
+    addAndMakeVisible(_tooltipLabel);
 }
 
 Header::~Header()
@@ -32,4 +33,13 @@ void Header::paint (juce::Graphics& g)
 
 void Header::resized()
 {
+    const auto compX = getWidth() * 0.2;
+    const auto compWidth = getWidth() * 0.77;
+    _tooltipLabel.setBounds(compX, 0, compWidth, getHeight());
+    _tooltipLabel.setFont(juce::Font("Helvetica", getHeight() * 0.25, juce::Font::FontStyleFlags::plain));
+}
+
+void Header::setViatorTooltip(const juce::String &content)
+{
+    _tooltipLabel.setText(content, juce::dontSendNotification);
 }

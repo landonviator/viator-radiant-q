@@ -64,6 +64,8 @@ private:
     
     juce::dsp::ProcessSpec _spec;
     juce::OwnedArray<viator_dsp::SVFilter<float>> _filters;
+    viator_dsp::SVFilter<float> _lowShelfCompensation;
+    juce::dsp::Gain<float> _gainModule;
     juce::dsp::Gain<float> _volumeModule;
     
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
@@ -74,6 +76,7 @@ private:
     void updateParameters();
     
     const int _versionNumber = 1;
+    static constexpr float _piDivisor = 2.0 / juce::MathConstants<float>::pi;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ViatorradiantqAudioProcessor)
 };

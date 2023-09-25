@@ -1,5 +1,6 @@
 #include <JuceHeader.h>
 #include "PultecComp.h"
+#include "../PluginEditor.h"
 
 PultecComp::PultecComp(ViatorradiantqAudioProcessor& p) : audioProcessor(p)
 {
@@ -30,15 +31,16 @@ void PultecComp::setDialProps()
     auto auxDialImage = juce::ImageCache::getFromMemory(BinaryData::Knob_01_png, BinaryData::Knob_01_pngSize);
     auto scaleImage = juce::ImageCache::getFromMemory(BinaryData::scale_small_knob_b_png, BinaryData::scale_small_knob_b_pngSize);
     
-    for (int i = 0; i < params.getSliderParams().size(); ++i)
+    for (int i = 0; i < params.getPultecSliderParams().size(); ++i)
     {
         auto isAuxDial = i == 4 || i == 5 || i == 7;
         
         _dials.add(std::make_unique<viator_gui::ImageFader>());
-        _attachments.add(std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor._treeState, params.getSliderParams()[i].paramID, *_dials[i]));
-        _dials[i]->setComponentID(params.getSliderParams()[i].paramID);
-        _dials[i]->setName(params.getSliderParams()[i].paramName);
+        _attachments.add(std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor._treeState, params.getPultecSliderParams()[i].paramID, *_dials[i]));
+        _dials[i]->setComponentID(params.getPultecSliderParams()[i].paramID);
+        _dials[i]->setName(params.getPultecSliderParams()[i].paramName);
         _dials[i]->setFaderImageAndNumFrames(isAuxDial ? auxDialImage : mainDialImage, 128);
+        _dials[i]->addMouseListener(this, true);
         
         if (isAuxDial)
         {
@@ -46,6 +48,7 @@ void PultecComp::setDialProps()
         }
         
         _dials[i]->setSliderStyle(juce::Slider::RotaryVerticalDrag);
+        _dials[i]->setViatorTooltip(_tooltips[i + 1]);
         addAndMakeVisible(*_dials[i]);
     }
 }
@@ -56,7 +59,7 @@ void PultecComp::setLabelProps()
     {
         _labels.add(std::make_unique<juce::Label>());
         _labels[i]->setJustificationType(juce::Justification::centred);
-        _labels[i]->setColour(juce::Label::ColourIds::textColourId, juce::Colours::whitesmoke.withAlpha(0.5f));
+        _labels[i]->setColour(juce::Label::ColourIds::textColourId, juce::Colours::ghostwhite.withAlpha(0.25f));
         addAndMakeVisible(*_labels[i]);
     }
     
@@ -130,4 +133,23 @@ void PultecComp::positionLabels()
     _labels[0]->setFont(juce::Font("Helvetica", _labels[0]->getHeight() * 0.8, juce::Font::FontStyleFlags::bold));
     _labels[1]->setBounds(labelX, _labels[0]->getBottom(), labelWidth, labelHeight * 2.0);
     _labels[1]->setFont(juce::Font("Helvetica", _labels[0]->getHeight() * 0.4, juce::Font::FontStyleFlags::plain));
+}
+
+void PultecComp::mouseEnter(const juce::MouseEvent &event)
+{
+    if (auto slider = dynamic_cast<viator_gui::ImageFader*>(event.eventComponent))
+    {
+        if (auto parent = dynamic_cast<ViatorradiantqAudioProcessorEditor*>(getParentComponent()))
+        {
+            parent->getViatorHeader().setViatorTooltip(slider->getViatorTooltip());
+        }
+    }
+}
+
+void PultecComp::mouseExit(const juce::MouseEvent &event)
+{
+    if (auto parent = dynamic_cast<ViatorradiantqAudioProcessorEditor*>(getParentComponent()))
+    {
+        parent->getViatorHeader().setViatorTooltip("");
+    }
 }
