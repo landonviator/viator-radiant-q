@@ -87,7 +87,7 @@ void PultecComp::setLabelProps()
         addAndMakeVisible(*_labels[i]);
     }
     
-    _labels[0]->setText("Viator DSP", juce::dontSendNotification);
+    _labels[0]->setText("Radiant Q", juce::dontSendNotification);
     _labels[1]->setText("Electron Tube Powered \n Program Equalizer", juce::dontSendNotification);
 }
 
