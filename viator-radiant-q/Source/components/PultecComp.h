@@ -32,9 +32,9 @@ private:
     juce::StringArray _tooltips =
     {
         "Increases the volume of the signal going into the EQ.",
-      "Increases the amplification of a low-shelf filter at the specified cutoff frequency.",
-        "Reduces the gain of a low-peak filter at a frequency higher than the low-shelf cutoff, thereby enhancing the precision of the low-shelf filter. When you set both the low boost and low attenuation to the same value, you achieve the iconic Pultec trick.",
-        "Increases the amplification of a high-shelf filter at the specified cutoff frequency.",
+      "Increases the gain of a low-shelf filter at the specified cutoff frequency.",
+        "Reduces the gain of a low-peak filter at a frequency higher than the low-shelf cutoff, thereby enhancing the precision of the low-shelf filter. When you set both the low boost and low attenuation to the same value, you achieve the iconic tube EQ trick.",
+        "Increases the gain of a high-shelf filter at the specified cutoff frequency.",
         "Decreases the cutoff frequency of a low-pass filter, with its range determined by the 'High Range' parameter.",
         "Alters the spectrum of frequencies influenced by the 'High Attenuation' parameter.",
         "Changes the center frequency for the low filters.",
@@ -42,6 +42,9 @@ private:
         "Changes the center frequency for the high shelf filter.",
         "Increase the volume of the signal coming out of the EQ."
     };
+    
+    std::unique_ptr<juce::Drawable> wideIcon;
+    std::unique_ptr<juce::Drawable> narrowIcon;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PultecComp)
 };

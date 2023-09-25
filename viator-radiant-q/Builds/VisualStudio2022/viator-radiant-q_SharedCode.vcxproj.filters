@@ -6530,6 +6530,12 @@
     <None Include="..\..\Source\Assets\but_small_rec_on.png">
       <Filter>viator-radiant-q\Source\Assets</Filter>
     </None>
+    <None Include="..\..\Source\Assets\fad-filter-bandpass.svg">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
+    <None Include="..\..\Source\Assets\fad-softclip.svg">
+      <Filter>viator-radiant-q\Source\Assets</Filter>
+    </None>
     <None Include="..\..\Source\Assets\hor_flat_slider.png">
       <Filter>viator-radiant-q\Source\Assets</Filter>
     </None>

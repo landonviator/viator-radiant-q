@@ -149,6 +149,7 @@
 		958E7BA135C9F90F7CC34B2C /* PluginEditor.h */ /* PluginEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PluginEditor.h; path = ../../Source/PluginEditor.h; sourceTree = SOURCE_ROOT; };
 		96AC62ECF3966C1177A3E143 /* Info-Standalone_Plugin.plist */ /* Info-Standalone_Plugin.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-Standalone_Plugin.plist"; path = "Info-Standalone_Plugin.plist"; sourceTree = SOURCE_ROOT; };
 		98BADF0803D40BA7B1C95224 /* scale_vu-meterno_name.png */ /* scale_vu-meterno_name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scale_vu-meterno_name.png"; path = "../../Source/Assets/vu-meter/scale_vu-meterno_name.png"; sourceTree = SOURCE_ROOT; };
+		9AEB568DFE28D9F4E3879D49 /* fad-softclip.svg */ /* fad-softclip.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = "fad-softclip.svg"; path = "../../Source/Assets/fad-softclip.svg"; sourceTree = SOURCE_ROOT; };
 		9F3770016014252C811FB659 /* scale_small_knob_b.png */ /* scale_small_knob_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scale_small_knob_b.png; path = ../../Source/Assets/scale_small_knob_b.png; sourceTree = SOURCE_ROOT; };
 		A69E96AAA0BC5CDF2F38E385 /* juce_gui_extra */ /* juce_gui_extra */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_extra; path = ../../../modules/JUCE/modules/juce_gui_extra; sourceTree = SOURCE_ROOT; };
 		A9F0FD7DB599D0E56CE1D578 /* Shared Code */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libviator-radiant-q.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +170,7 @@
 		C4AE91C54C0C7E67AF00C450 /* CoreAudioKit.framework */ /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
 		C4B1A157908BF246294D086B /* PultecComp.cpp */ /* PultecComp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PultecComp.cpp; path = ../../Source/components/PultecComp.cpp; sourceTree = SOURCE_ROOT; };
 		C61CEEF3D3578FD726A6649D /* VST3 Manifest Helper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = juce_vst3_helper; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6549D690E82824AACA8D465 /* fad-filter-bandpass.svg */ /* fad-filter-bandpass.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; name = "fad-filter-bandpass.svg"; path = "../../Source/Assets/fad-filter-bandpass.svg"; sourceTree = SOURCE_ROOT; };
 		C84D0258BB52A6708B849BF5 /* vu_meter.png */ /* vu_meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vu_meter.png; path = "../../Source/Assets/vu-meter/vu_meter.png"; sourceTree = SOURCE_ROOT; };
 		C88CECD792C86B44B024445E /* BinaryData3.cpp */ /* BinaryData3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData3.cpp; path = ../../JuceLibraryCode/BinaryData3.cpp; sourceTree = SOURCE_ROOT; };
 		CA59132525377FA6701C22E8 /* Knob_07.png */ /* Knob_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Knob_07.png; path = ../../Source/Assets/knobs/Knob_07.png; sourceTree = SOURCE_ROOT; };
@@ -327,6 +329,8 @@
 				6CC4A7DDD6727E215D507A73,
 				E43810B7E45987FD144CABE9,
 				C43B23A1E963DA1C25818999,
+				C6549D690E82824AACA8D465,
+				9AEB568DFE28D9F4E3879D49,
 				610012215B485CF82246C333,
 				8056DC45F7B505453252EDB0,
 				84C1CFAB4CA0AB5A515210A8,

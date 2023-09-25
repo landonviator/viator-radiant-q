@@ -74,6 +74,12 @@ namespace BinaryData
     extern const char*   but_small_rec_on_png;
     const int            but_small_rec_on_pngSize = 11697;
 
+    extern const char*   fadfilterbandpass_svg;
+    const int            fadfilterbandpass_svgSize = 556;
+
+    extern const char*   fadsoftclip_svg;
+    const int            fadsoftclip_svgSize = 1280;
+
     extern const char*   hor_flat_slider_png;
     const int            hor_flat_slider_pngSize = 210933;
 
@@ -102,7 +108,7 @@ namespace BinaryData
     const int            texture_jpgSize = 5890458;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 31;
+    const int namedResourceListSize = 33;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

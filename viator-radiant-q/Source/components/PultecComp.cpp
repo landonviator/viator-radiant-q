@@ -6,6 +6,10 @@ PultecComp::PultecComp(ViatorradiantqAudioProcessor& p) : audioProcessor(p)
 {
     setDialProps();
     setLabelProps();
+    
+    wideIcon = juce::Drawable::createFromImageData(BinaryData::fadsoftclip_svg, BinaryData::fadsoftclip_svgSize);
+    narrowIcon = juce::Drawable::createFromImageData(BinaryData::fadfilterbandpass_svg, BinaryData::fadfilterbandpass_svgSize);
+
 }
 
 PultecComp::~PultecComp()
@@ -16,6 +20,24 @@ void PultecComp::paint (juce::Graphics& g)
 {
     paintBackground(g);
     paintScrews(g);
+    
+    auto imageX = _dials[6]->getX() - getWidth() * 0.02;
+    const auto imageY = getHeight() * 0.785;
+    const auto imageSize = _dials[6]->getWidth() * 0.15;
+    
+    if (wideIcon)
+    {
+        wideIcon->replaceColour(juce::Colours::black, juce::Colours::whitesmoke.withAlpha(0.5f));
+        wideIcon->drawWithin(g, getLocalBounds().toFloat().withX(imageX).withY(imageY).withWidth(imageSize).withHeight(imageSize), juce::RectanglePlacement::stretchToFit, 1.0f);
+    }
+    
+    imageX = _dials[6]->getRight();
+    
+    if (narrowIcon)
+    {
+        narrowIcon->replaceColour(juce::Colours::black, juce::Colours::whitesmoke.withAlpha(0.5f));
+        narrowIcon->drawWithin(g, getLocalBounds().toFloat().withX(imageX).withY(imageY).withWidth(imageSize).withHeight(imageSize), juce::RectanglePlacement::stretchToFit, 1.0f);
+    }
 }
 
 void PultecComp::resized()
@@ -34,6 +56,7 @@ void PultecComp::setDialProps()
     for (int i = 0; i < params.getPultecSliderParams().size(); ++i)
     {
         auto isAuxDial = i == 4 || i == 5 || i == 7;
+        auto isReversed = i == 1 || i == 3;
         
         _dials.add(std::make_unique<viator_gui::ImageFader>());
         _attachments.add(std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor._treeState, params.getPultecSliderParams()[i].paramID, *_dials[i]));
@@ -41,6 +64,7 @@ void PultecComp::setDialProps()
         _dials[i]->setName(params.getPultecSliderParams()[i].paramName);
         _dials[i]->setFaderImageAndNumFrames(isAuxDial ? auxDialImage : mainDialImage, 128);
         _dials[i]->addMouseListener(this, true);
+        _dials[i]->setIsReversed(isReversed);
         
         if (isAuxDial)
         {

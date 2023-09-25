@@ -61,8 +61,9 @@ void ViatorradiantqAudioProcessorEditor::setFaderProps()
         _sliders[i]->setColour(juce::Slider::ColourIds::thumbColourId, juce::Colour(99, 99, 99));
         _sliders[i]->setComponentID(params.getIOSliderParams()[i].paramID);
         _sliders[i]->setName(params.getIOSliderParams()[i].paramName);
-        _sliders[i]->addMouseListener(this, true);
+        _sliders[i]->addMouseListener(this, false);
         _sliders[i]->setDialValueType(viator_gui::CustomFader::ValueType::kFloat);
+        _sliders[i]->setViatorTooltip(_tooltips[i]);
         addAndMakeVisible(*_sliders[i]);
     }
 }
@@ -77,4 +78,20 @@ void ViatorradiantqAudioProcessorEditor::positionFaders()
     
     compX = getWidth() * 0.95;
     _sliders[1]->setBounds(compX, compY, compWidth, compHeight);
+}
+
+void ViatorradiantqAudioProcessorEditor::mouseEnter(const juce::MouseEvent &event)
+{
+    for (auto& slider : _sliders)
+    {
+        if (event.eventComponent == slider)
+        {
+            _headerComp.setViatorTooltip(slider->getViatorTooltip());
+        }
+    }
+}
+
+void ViatorradiantqAudioProcessorEditor::mouseExit(const juce::MouseEvent &event)
+{
+    _headerComp.setViatorTooltip("");
 }
